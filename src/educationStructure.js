@@ -1,54 +1,136 @@
 module.exports = [
   {
-    title: "block_1",
+    title: "Вступительный блок",
     id: "block_1",
     lessons: [
       {
-        title: "Сообщение block_1 / lesson_1",
+        title: "Принцип без которого нельзя круто продавать на ОнлиФанс",
         id: "lesson_1",
       },
       {
-        title: "Сообщение block_1 / lesson_2",
+        title: "Треугольник результата",
         id: "lesson_2",
       },
       {
-        title: "Сообщение block_1 / lesson_3",
+        title: "Бюджет переговоров",
         id: "lesson_3",
+      },
+      {
+        title: "Этапы продаж",
+        id: "lesson_4",
       },
     ],
   },
   {
-    title: "block_2",
+    title: "Установление контакта",
     id: "block_2",
     lessons: [
       {
-        title: "Сообщение block_2 / lesson_1",
+        title: "Важность доверия в продажах",
         id: "lesson_1",
       },
       {
-        title: "Сообщение block_2 / lesson_2",
+        title: "Что разрушает доверие",
         id: "lesson_2",
       },
       {
-        title: "Сообщение block_2 / lesson_3",
+        title: "Что укрепляет доверие",
+        id: "lesson_3",
+      },
+      {
+        title: "Принцип Вы-подход",
+        id: "lesson_4",
+      },
+      {
+        title: "Техника Присоединение",
+        id: "lesson_5",
+      },
+    ],
+  },
+  {
+    title: "Задавание вопросов",
+    id: "block_3",
+    lessons: [
+      {
+        title: "Почему важно задавать вопросы",
+        id: "lesson_1",
+      },
+      {
+        title: "Виды вопросов",
+        id: "lesson_2",
+      },
+      {
+        title: "Умение слышать собеседника",
+        id: "lesson_3",
+      },
+      {
+        title: "Перехват инициативы",
+        id: "lesson_4",
+      },
+      {
+        title: "Формирование потребности",
+        id: "lesson_5",
+      },
+      {
+        title: "Ошибки при задавании вопросов",
+        id: "lesson_6",
+      },
+    ],
+  },
+  {
+    title: "Закрытие сделки",
+    id: "block_4",
+    lessons: [
+      {
+        title: "Этап закрытие",
+        id: "lesson_1",
+      },
+      {
+        title: "Техники закрытия",
+        id: "lesson_2",
+      },
+      {
+        title: "Метод Сократа",
+        id: "lesson_3",
+      },
+      {
+        title: "Техника Программирование",
+        id: "lesson_4",
+      },
+    ],
+  },
+  {
+    title: "Работа с возражениями",
+    id: "block_5",
+    lessons: [
+      {
+        title: "Важность работы с возражениями",
+        id: "lesson_1",
+      },
+      {
+        title: "Алгоритм отработки возражений",
+        id: "lesson_2",
+      },
+      {
+        title: "Истинные и ложные возражения",
         id: "lesson_3",
       },
     ],
   },
   {
-    title: "block_3",
-    id: "block_3",
+    title: "Бонусное видео",
+    id: "block_6",
     lessons: [
       {
-        title: "Сообщение block_3 / lesson_1",
+        title: "Принципы эффективной удаленной работы",
         id: "lesson_1",
       },
       {
-        title: "Сообщение block_3 / lesson_2",
+        title: "Лайфхаки в секстинге",
         id: "lesson_2",
       },
       {
-        title: "Сообщение block_3 / lesson_3",
+        title: "Типичные ошибки операторов",
         id: "lesson_3",
       },
     ],

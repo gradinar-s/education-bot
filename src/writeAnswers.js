@@ -9,11 +9,25 @@ class WriteAnswers {
   async writeUserName(data) {
     await this.doc.useServiceAccountAuth(creds);
     await this.doc.loadInfo();
-    const sheet = this.doc.sheetsByIndex[0];
 
-    sheet.addRows([{ platform_username: "" }, { platform_username: data.platform_username }], {
-      insert: true,
+    const sheet = this.doc.sheetsByIndex[0];
+    const rows = await sheet.getRows();
+
+    let isError = false;
+
+    rows.forEach(async (el) => {
+      if (el?.platform_username === data.platform_username) {
+        isError = true;
+      }
     });
+
+    if (!isError) {
+      sheet.addRows([{ platform_username: "" }, { platform_username: data.platform_username }], {
+        insert: true,
+      });
+    }
+
+    return isError;
   }
 
   async writeHomework(data) {
@@ -22,6 +36,7 @@ class WriteAnswers {
 
     const sheet = this.doc.sheetsByIndex[0];
     const rows = await sheet.getRows();
+
     let isError = false;
 
     rows.map(async (el) => {

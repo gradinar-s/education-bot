@@ -14,7 +14,7 @@ bot.start((ctx) => {
   ctx.session.current_step = constants.steps.NICKNAME;
   ctx.session.userData = { id: ctx.message.from.id };
 
-  return ctx.reply("Введи свой ник на платформе");
+  return ctx.reply("Введи свой Ник который указан на платформе");
 });
 
 const renderButtons = (buttons) => {
@@ -28,25 +28,29 @@ const renderButtons = (buttons) => {
 bot.command(constants.commands.POST, async (ctx) => {
   if (ctx.session.current_step === constants.steps.PENDING) {
     ctx.session.current_step = constants.steps.BLOCK_SELECTION;
-    return ctx.reply("Выбери блок", renderButtons(educationStructure));
+    return ctx.reply(
+      "Выбери блок по которому хочешь отправить ДЗ на проверку",
+      renderButtons(educationStructure)
+    );
   }
 });
 
 bot.on("message", async (ctx) => {
   if (ctx.session.current_step === constants.steps.NICKNAME) {
-    if (ctx.session.userData?.platform_username === ctx.update.message.text) {
-      ctx.session.current_step = constants.steps.BLOCK_SELECTION;
-      return ctx.reply(
-        "Отлично, ты уже зарегистрирован. Выбери блок",
-        renderButtons(educationStructure)
-      );
-    }
-
     ctx.session.userData.platform_username = ctx.update.message.text;
     ctx.session.current_step = constants.steps.PENDING;
 
-    writeAnswers.writeUserName(ctx.session.userData);
-    return ctx.reply("Ок, когда захочешь сделать задание введи комманду /post");
+    const isError = await writeAnswers.writeUserName(ctx.session.userData);
+
+    if (isError) {
+      return ctx.reply(
+        `Такой Ник уже зарегистрирован! Если ты ранее НЕ РЕГИСТРИРОВАЛСЯ в этом боте и видишь это сообщение, пожалуйста, обратись к своему СО, он поможет решить проблему.
+
+Если ты уже РЕГИСТРИРОВАЛСЯ здесь под именем ${ctx.update.message.text}, тогда просто введи комманду /post что-бы выбрать нужный блок и урок`
+      );
+    } else {
+      return ctx.reply("Ок, когда захочешь сделать задание введи комманду /post");
+    }
   }
 
   if (ctx.session.current_step === constants.steps.SENDING_HOMEWORK) {
@@ -59,7 +63,9 @@ bot.on("message", async (ctx) => {
       return ctx.reply("По выбранному уроку ДЗ уже отправлено");
     } else {
       return ctx.reply(
-        "Записал твой ответ, спасибо. Старые кнопки уже не активны, что-бы отправить дз для другого уровня введи команду /post ещё раз"
+        `Записал твой ответ, спасибо 🤗
+
+Старые кнопки уже не активны. Что-бы отправить ДЗ для другого урока введи команду /post ещё раз`
       );
     }
   }
@@ -86,7 +92,7 @@ const onClickButton = (id) => {
         ctx.session.current_step = constants.steps.SENDING_HOMEWORK;
         ctx.session.userData.selected_lesson = id;
 
-        return ctx.reply(`Хорошо, введи ссылку на выполненое ДЗ (selected: ${id})`);
+        return ctx.reply(`Хорошо, введи ссылку на выполненое ДЗ`);
       }
     } catch (error) {
       // ...
