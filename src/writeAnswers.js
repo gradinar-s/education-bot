@@ -22,7 +22,7 @@ class WriteAnswers {
     });
 
     if (!isError) {
-      sheet.addRows([{ platform_username: "" }, { platform_username: data.platform_username }], {
+      sheet.addRows([{ platform_username: data.platform_username }], {
         insert: true,
       });
     }
